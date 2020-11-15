@@ -1,21 +1,18 @@
+mod space;
+
 use rand::distributions::{Distribution, Uniform};
 use png::{BitDepth, ColorType, Encoder, Writer};
 use std::fs::File;
+use space::Space;
 
 fn main() {
-    let width = 1600;
-    let height = 400;
-    let starcount = 25;
+    let width = 1920;
+    let height = 1080;
+    let density = 10;
 
-    let mut data: Vec<u8> = vec![0; width * height];
-
-    let mut rng = rand::thread_rng();
-    let rand_x = Uniform::from(0..width);
-    let rand_y = Uniform::from(0..height);
-
-    for _ in 0..starcount {
-        *data.get_mut(rand_y.sample(&mut rng) * width + rand_x.sample(&mut rng)).expect("How did we exceed the iamge bounds?") = 255;
-    }
+    let mut space = Space::new(width, height);
+    space.fill_randomly(density);
+    let data = space.to_data();
 
     let fout = File::create("out.png").expect("Failed to create output file!");
     let mut pngcoder = Encoder::new(fout, width as u32, height as u32);
