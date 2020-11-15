@@ -6,9 +6,9 @@ use std::fs::File;
 use space::Space;
 
 fn main() {
-    let width = 1920;
-    let height = 1080;
-    let density = 10;
+    let width = 1000;
+    let height = 100;
+    let density = 25;
 
     let mut space = Space::new(width, height);
     space.fill_randomly(density);
