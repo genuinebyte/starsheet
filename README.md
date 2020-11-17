@@ -6,6 +6,8 @@ Generate pleasing images of a sky that doesn't exist.
 
 A library and a cli binary.
 
+**The Future**: A GUI, eventually, for fun!
+
 ## Binary
 Install with `cargo install starsheet` and then run with `starsheet`.
 
@@ -20,10 +22,10 @@ of 20. The command looked like this:
 `starsheet -w 1000 -h 1000 -s 20 example`
 
 There is currently no way to change the percentages of the stars brightness,
-but this is coming!
+but **this is coming**!
 
 ## Library
-The documentation is currently, not too great! Good thing there's only one
+The documentation is currently not too great! Good thing there's only one
 struct with like 5 methods. Documentation will be improved. Until then, you
 can have a look at the binary source [here](src/main.rs), or the example
 below.
