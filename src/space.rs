@@ -15,6 +15,14 @@ impl Space {
 		}
 	}
 
+	pub fn width(&self) -> u32 {
+		self.width as u32
+	}
+
+	pub fn height(&self) -> u32 {
+		self.height as u32
+	}
+
 	pub fn fill_randomly(&mut self, density: u32) {
 		let mut rng = rand::thread_rng();
 		let rand_x = Uniform::from(0..self.width);

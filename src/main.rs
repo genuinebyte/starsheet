@@ -1,7 +1,6 @@
 mod space;
 
-use rand::distributions::{Distribution, Uniform};
-use png::{BitDepth, ColorType, Encoder, Writer};
+use png::{BitDepth, ColorType, Encoder};
 use std::fs::File;
 use space::Space;
 use getopts::Options;
@@ -57,10 +56,16 @@ fn main() {
 
     let mut space = Space::new(width, height);
     space.fill_randomly(density);
+    write_png(space, &outname);
+}
+
+fn write_png(space: Space, fname: &str) {
+    let width = space.width();
+    let height = space.height();
     let data = space.to_data();
 
-    let fout = File::create(outname).expect("Failed to create output file!");
-    let mut pngcoder = Encoder::new(fout, width as u32, height as u32);
+    let fout = File::create(fname).expect("Failed to create output file!");
+    let mut pngcoder = Encoder::new(fout, width, height);
     pngcoder.set_color(ColorType::Grayscale);
     pngcoder.set_depth(BitDepth::Eight);
 
