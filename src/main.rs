@@ -12,9 +12,10 @@ fn main() {
     };
 
     let mut opts = Options::new();
-    opts.reqopt("w", "width", "set the width of the output image", "WIDTH");
-    opts.reqopt("h", "height", "set the height of the output image", "HEIGHT");
-    opts.reqopt("s", "stars", "set the number of stars you want per 100 square pixels", "STARS");
+    opts.reqopt("w", "width", "width of the output image", "WIDTH");
+    opts.reqopt("h", "height", "height of the output image", "HEIGHT");
+    opts.reqopt("s", "stars", "number of stars you want per 100 square pixels", "STARS");
+    opts.optflag("", "help", "print this message and exit");
     let matches = match opts.parse(&args[1..]) {
         Ok(m) => m,
         Err(_e) => {
@@ -22,6 +23,11 @@ fn main() {
             return;
         }
     };
+
+    if matches.opt_present("help") {
+        print_usage(opts);
+        return;
+    }
 
     // TODO: Macro for this pattern.
     let width: u32 = match matches.opt_get("width") {
