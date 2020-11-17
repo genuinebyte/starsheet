@@ -7,15 +7,15 @@ pub struct Space {
 }
 
 impl Space {
-	pub fn new(width: usize, height: usize) -> Self {
+	pub fn new(width: u32, height: u32) -> Self {
 		Self {
-			width: width,
-			height: height,
-			data: vec![0; width * height]
+			width: width as usize,
+			height: height as usize,
+			data: vec![0; (width * height) as usize]
 		}
 	}
 
-	pub fn fill_randomly(&mut self, density: usize) {
+	pub fn fill_randomly(&mut self, density: u32) {
 		let mut rng = rand::thread_rng();
 		let rand_x = Uniform::from(0..self.width);
 		let rand_y = Uniform::from(0..self.height);
