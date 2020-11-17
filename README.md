@@ -35,20 +35,20 @@ use starsheet::Space;
 
 // Generates an image with the same parameters as the example image
 fn main() {
-	// Create a new Space struct with a width and height of 1000 pixels
-	let mut space = Space::new(1000, 1000);
-	// Fill space randomly with stars at a density of 20 stars per 100 pixels^2
+    // Create a new Space struct with a width and height of 1000 pixels
+    let mut space = Space::new(1000, 1000);
+    // Fill space randomly with stars at a density of 20 stars per 100 pixels^2
     space.fill_randomly(20);
 	
-	// Get the width and height from space
+    // Get the width and height from space
     let width = space.width();
-	let height = space.height();
+    let height = space.height();
 	
-	// Consume space and get the underlying pixel data. Each u8 is a black
-	// level, so the image is greyscale.
-	let data = space.to_data();
+    // Consume space and get the underlying pixel data. Each u8 is a black
+    // level, so the image is greyscale.
+    let data = space.to_data();
 	
-	// ... From here you can manipulate the image further by operating on the
-	// pixel data or feed it to some kind of image encoder to write as a file.
+    // ... From here you can manipulate the image further by operating on the
+    // pixel data or feed it to some kind of image encoder to write as a file.
 }
 ```

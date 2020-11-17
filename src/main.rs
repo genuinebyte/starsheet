@@ -1,7 +1,7 @@
-use starsheet::Space;
-use png::{BitDepth, ColorType, Encoder};
-use std::fs::File;
 use getopts::Options;
+use png::{BitDepth, ColorType, Encoder};
+use starsheet::Space;
+use std::fs::File;
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -14,7 +14,12 @@ fn main() {
     let mut opts = Options::new();
     opts.reqopt("w", "width", "width of the output image", "WIDTH");
     opts.reqopt("h", "height", "height of the output image", "HEIGHT");
-    opts.reqopt("s", "stars", "number of stars you want per 100 square pixels", "STARS");
+    opts.reqopt(
+        "s",
+        "stars",
+        "number of stars you want per 100 square pixels",
+        "STARS",
+    );
     opts.optflag("", "help", "print this message and exit");
     let matches = match opts.parse(&args[1..]) {
         Ok(m) => m,
@@ -73,6 +78,10 @@ fn write_png(space: Space, fname: &str) {
     pngcoder.set_color(ColorType::Grayscale);
     pngcoder.set_depth(BitDepth::Eight);
 
-    let mut writer = pngcoder.write_header().expect("Failed to write PNG header!");
-    writer.write_image_data(&data.as_slice()).expect("Failed to write PNG image data!");
+    let mut writer = pngcoder
+        .write_header()
+        .expect("Failed to write PNG header!");
+    writer
+        .write_image_data(&data.as_slice())
+        .expect("Failed to write PNG image data!");
 }
