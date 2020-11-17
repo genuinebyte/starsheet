@@ -1,5 +1,6 @@
 use rand::distributions::{Distribution, Uniform, WeightedIndex};
 
+/// The main structure exposed by starsheet.
 pub struct Space {
 	width: usize,
 	height: usize,
@@ -7,6 +8,7 @@ pub struct Space {
 }
 
 impl Space {
+	/// Create a new `Space` struct.
 	pub fn new(width: u32, height: u32) -> Self {
 		Self {
 			width: width as usize,
@@ -15,14 +17,18 @@ impl Space {
 		}
 	}
 
+	/// Get the width of the image.
 	pub fn width(&self) -> u32 {
 		self.width as u32
 	}
 
+	// Get the height of the image.
 	pub fn height(&self) -> u32 {
 		self.height as u32
 	}
 
+	/// Fill space with a random assortmnt of stars. They will have varrying
+	/// brightness and positins.
 	pub fn fill_randomly(&mut self, density: u32) {
 		let mut rng = rand::thread_rng();
 		let rand_x = Uniform::from(0..self.width);
@@ -42,6 +48,8 @@ impl Space {
 		}
 	}
 
+	/// Consumes itself and returns the raw image data. This data is greyscale,
+	/// so each u8 is a pixel.
 	pub fn to_data(self) -> Vec<u8> {
 		self.data
 	}

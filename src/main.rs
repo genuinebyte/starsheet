@@ -1,8 +1,6 @@
-mod space;
-
+use starsheet::Space;
 use png::{BitDepth, ColorType, Encoder};
 use std::fs::File;
-use space::Space;
 use getopts::Options;
 
 fn main() {
