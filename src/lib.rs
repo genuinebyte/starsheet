@@ -159,8 +159,8 @@ impl Space {
                 break;
             }
 
-            x = x + dx;
-            y = y + dy;
+            x += dx;
+            y += dy;
             i += 1;
         }
     }
